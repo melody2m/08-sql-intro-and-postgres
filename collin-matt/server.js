@@ -10,10 +10,10 @@ const app = express();
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
-// const conString = 'postgres://postgres:c0de@localhost:5432/postgres';
+const conString = 'postgres://postgres:c0de@localhost:5432/postgres';
 
 // Mac:
-const conString = 'postgres://localhost:5432';
+// const conString = 'postgres://localhost:5432';
 
 const client = new pg.Client(conString);
 
@@ -116,10 +116,7 @@ app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // This is '3' from the diagram. It's interacting with truncateTable. This is also Delete from CRUD.
   client.query(
-      `UPDATE articles
-      SET
-      title=$1, author=$2, "authorUrl"=$3, category=$4, "publishedOn"=$5, body=$6
-      WHERE article_id=$7;`
+      `DELETE FROM articles;`
     )
     .then(() => {
       response.send('Delete complete')
